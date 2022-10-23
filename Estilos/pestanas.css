@@ -1,0 +1,58 @@
+/* Clase de elemento vstPestanaFrame */
+.pestanaFrame {
+	padding: 0.1rem;
+}
+
+/* Clase de contenedor de pestañas */
+.pestanaFrame > .pestana-contenido {
+	padding: 1rem;
+	min-height: 50vh;
+	background-color: lightgray;
+	
+	border: 0.2rem solid black;
+	border-bottom-right-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+	
+}
+
+/* Labels de pestañas */
+.pestana-label {
+	display: inline-block;
+	padding: 0.5rem;
+	margin-left: 0.1rem;
+	margin-right: 0.1rem;
+	background-color: lightgoldenrodyellow;
+
+	border: 0.2rem solid black;
+	border-bottom: none;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+
+	cursor: pointer;
+}
+
+/* Pestana-label en caso que esté seleccionado */
+.pestana-label:has( input[type="radio"]:checked ) {
+	background-color: goldenrod;
+}
+
+.pestana-label > input[type="radio"] {
+	display: none;
+}
+
+/* Contenido de pestañas general */
+.pestana-box {
+	display: none;
+}
+
+/* Mostrar la pestaña actual, con CSS se selecciona que mostrar */
+#pes1:has( input[type="radio"]:checked )
+	~ .pestana-contenido > #pes1-contenido { display: inherit; }
+#pes2:has( input[type="radio"]:checked )
+	~ .pestana-contenido > #pes2-contenido { display: inherit; }
+#pes3:has( input[type="radio"]:checked )
+	~ .pestana-contenido > #pes3-contenido { display: inherit; }
+#pes4:has( input[type="radio"]:checked )
+	~ .pestana-contenido > #pes4-contenido { display: inherit; }
+#pes5:has( input[type="radio"]:checked )
+	~ .pestana-contenido > #pes5-contenido { display: inherit; }
