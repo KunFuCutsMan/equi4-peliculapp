@@ -61,7 +61,7 @@ class CConectaDB
 	{
 		$flag = false;
 
-		print_r2($q);
+		// print_r2($q);
 
 		if ( mysqli_query( $this->cone, $q ) ) {
 			$flag = true;

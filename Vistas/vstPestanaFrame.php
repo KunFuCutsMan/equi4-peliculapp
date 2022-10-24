@@ -47,6 +47,7 @@
 		</div>
 
 		<div id="pes3-contenido" class="pestana-box">
+			<?php require 'Control/ctrlFormGenero.php'; ?>
 			<?php require 'Vistas/FormsEntidades/vstFormGenero.php'; ?>
 
 		</div>

@@ -22,3 +22,13 @@ main {
 	width: 80%;
 	min-height: 80%;
 }
+
+.msg-good {
+	background-color: yellowgreen;
+	color: white;
+}
+
+.msg-bad {
+	background-color: red;
+	color: white;
+}

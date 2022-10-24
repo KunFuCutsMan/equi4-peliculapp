@@ -14,15 +14,44 @@ class CPeliculaGenero extends CConectable
 		$this->setGenero($gen);
 	}
 
+	public function creaGeneroDB()
+	{
+		// Que no exista una copia
+		if ( $this->existeEnDB() ) {
+			return false;
+		}
+
+		$q = "INSERT INTO `equi4_peliculapp`.`peliculagenero`
+			(`Genero`) VALUES ('$this->Genero')";
+
+		return $this->con->ejecuta($q);
+	}
+
+	public function existeEnDB()
+	{
+		$q =
+		"SELECT CASE WHEN EXISTS (
+			SELECT * FROM equi4_peliculapp.peliculagenero
+			WHERE Genero='$this->Genero'
+			)
+			THEN TRUE ELSE FALSE
+		END";
+
+		if ( $this->con->ejecuta($q) ) {
+			return true;
+		}
+		else return false;
+	}
+
 	public function obtenTodosGenerosHTML()
 	{
 		$html = "";
 
 		$q = "SELECT * FROM peliculagenero";
-		$arrPaises = $this->con->consulta($q);
+		$arrGeneros = $this->con->consulta($q);
 
-		if ( count($arrPaises) >= 1 ) {
-			$html = $this->obtenOptionsHTML($arrPaises);
+		if ( count($arrGeneros) >= 1 ) {
+			$html = $this->obtenOptionsHTML($arrGeneros);
 		}
 
 		return $html;
