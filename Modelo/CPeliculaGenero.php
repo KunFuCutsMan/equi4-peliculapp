@@ -37,7 +37,11 @@ class CPeliculaGenero extends CConectable
 			THEN TRUE ELSE FALSE
 		END";
 
-		if ( $this->con->ejecuta($q) ) {
+		// El resultado se obtiene en un arreglo bidensional
+		// De un solo espacio, [0][0]
+		$bool = $this->con->consulta($q);
+
+		if ( $bool[0][0] == true ) {
 			return true;
 		}
 		else return false;

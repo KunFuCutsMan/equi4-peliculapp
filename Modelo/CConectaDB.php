@@ -42,7 +42,9 @@ class CConectaDB
 	{
 		$prodArr = array();
 
-		if ( $querySQL = mysqli_query( $this->cone, $query ) ) {
+		$querySQL = mysqli_query( $this->cone, $query );
+
+		if ( $querySQL ) {
 			
 			$n = 0;
 			while ( $res = mysqli_fetch_row($querySQL) ) {
@@ -60,8 +62,6 @@ class CConectaDB
 	public function ejecuta($q)
 	{
 		$flag = false;
-
-		// print_r2($q);
 
 		if ( mysqli_query( $this->cone, $q ) ) {
 			$flag = true;
