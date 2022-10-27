@@ -59,8 +59,10 @@
 		</div>
 
 		<div id="pes5-contenido" class="pestana-box">
+			<?php require 'Control/ctrlVerDirectores.php'; ?>
 			<?php require 'Vistas/FormsEntidades/vstVerDirectores.php'; ?>
 
+			<?php require 'Vistas/vstPeliculasDirectores.php'; ?>
 		</div>
 	</div>
 </div>

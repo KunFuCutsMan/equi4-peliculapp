@@ -19,6 +19,43 @@ class CDirector extends CConectable
 		$this->setApePrimero($ape1);
 	}
 
+	public function obtenPeliculasEnDB()
+	{
+		$pelis = array();
+
+		// Busquemos primero las peliculas relacionadas con el director
+		$q1 =
+		"SELECT PeliculaID FROM equi4_peliculapp.directorpelicula
+		WHERE `DirectorID`=$this->id";
+
+		$res = $this->con->consulta($q1);
+
+		// Si encontramos al menos una pelicula, entonces obtengamos
+		// sus nombres para regresarlas en el arreglo
+		if ( count($res) >= 1 ) {
+			foreach ($res as $peliculaID) {
+				// Obten la película con dicha ID
+				$q2 =
+				"SELECT Nombre, PeliculaGeneroID FROM equi4_peliculapp.pelicula
+				WHERE `PeliculaID`=$peliculaID[0]";
+
+				$resP = $this->con->consulta($q2)[0];
+
+				// Y Obten su género
+				$q3 =
+				"SELECT Genero FROM equi4_peliculapp.peliculagenero
+				WHERE `PeliculaGeneroID`=$resP[1]";
+
+				$resG = $this->con->consulta($q3)[0];
+
+				// Y juntemos las respuestas a $pelis
+				array_push($pelis, array( $resP[0], $resG[0] ) );
+			}
+		}
+
+		return $pelis;
+	}
+
 	public function obtenTodosDirectoresHTML()
 	{
 		$html = "";
