@@ -19,8 +19,8 @@
 
 	<label>
 		Director:
-		<select name="slcPeliDirector" size="5" multiple required>
-			<option value="0" >[Seleccione al menos un director]</option>
+		<select name="slcPeliDirector[]" size="5" multiple required>
+			<option value="0" > [Seleccione al menos un director] </option>
 		<?php
 			$direc = new CDirector(0, '', '', 0);
 			echo $direc->obtenTodosDirectoresHTML();
@@ -30,8 +30,8 @@
 
 	<label>
 		Actores:
-		<select name="slcPeliActores" size="5" multiple required>
-			<option value="0" >[Seleccione al menos un actor]</option>
+		<select name="slcPeliActores[]" size="5" multiple required>
+			<option value="0" > [Seleccione al menos un actor] </option>
 		<?php
 			$actor = new CActor(0, '', '', 0);
 			echo $actor->obtenTodosActoresHTML();

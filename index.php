@@ -8,7 +8,7 @@ require_once 'Modelo/CPeliculaGenero.php';
 function print_r2($var)
 {
 	echo "<pre>";
-	echo print_r($var);
+	print_r($var);
 	echo "</pre>";
 }
 ?>

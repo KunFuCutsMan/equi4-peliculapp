@@ -53,6 +53,7 @@
 		</div>
 
 		<div id="pes4-contenido" class="pestana-box">
+			<?php require 'Control/ctrlFormPelicula.php'; ?>
 			<?php require 'Vistas/FormsEntidades/vstFormPelicula.php'; ?>
 
 		</div>
