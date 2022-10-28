@@ -18,7 +18,7 @@
 
 	<label>
 		Nacionalidad:
-		<select name="slcDirectorPais" required size="5">
+		<select name="slcActorPais" required size="5">
 			<option value="0">[Seleccione una Nacionalidad]</option>
 			<?php
 				$pais = new CPais(0);

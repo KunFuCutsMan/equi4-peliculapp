@@ -56,3 +56,5 @@
 	~ .pestana-contenido > #pes4-contenido { display: inherit; }
 #pes5:has( input[type="radio"]:checked )
 	~ .pestana-contenido > #pes5-contenido { display: inherit; }
+#pes6:has( input[type="radio"]:checked )
+	~ .pestana-contenido > #pes6-contenido { display: inherit; }

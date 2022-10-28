@@ -1,8 +1,9 @@
 <?php
 	// Obten el label que se dejó abierto
-	$lbl = isset($_GET['label']) && !empty($_GET['label'])
-		? $_GET['label']
-		: 1 ;
+	$lbl = 1;
+	if (isset($_GET['label']) && !empty($_GET['label'])) {
+		$lbl = $_GET['label'];
+	}
 
 	function checaLBL($lbl, $n)
 	{
@@ -35,13 +36,18 @@
 		Ver Directores
 	</label>
 
+	<label class="pestana-label" id="pes6">
+		<input type="radio" name="pestanas" <?php checaLBL($lbl,6); ?> >
+		Ver Películas
+	</label>
+
 	<div class="pestana-contenido">
 		<div id="pes1-contenido" class="pestana-box">
 			<?php require 'Vistas/FormsEntidades/vstFormDirector.php'; ?>
-
 		</div>
 
 		<div id="pes2-contenido" class="pestana-box">
+			<?php require 'Control/ctrlFormActor.php'; ?>
 			<?php require 'Vistas/FormsEntidades/vstFormActor.php'; ?>
 
 		</div>
@@ -63,6 +69,13 @@
 			<?php require 'Vistas/FormsEntidades/vstVerDirectores.php'; ?>
 
 			<?php require 'Vistas/vstPeliculasDirectores.php'; ?>
+		</div>
+
+		<div id="pes6-contenido" class="pestana-box">
+			<?php require 'Control/ctrlVerPeliculas.php'; ?>
+			<?php require 'Vistas/FormsEntidades/vstVerPeliculas.php'; ?>
+
+			<?php require 'Vistas/vstPeliculaPerfil.php'; ?>
 		</div>
 	</div>
 </div>

@@ -16,6 +16,30 @@ class CPelicula extends CConectable
 		$this->setGeneroID($gen);
 	}
 
+	public function obtenRegistroEnDB()
+	{
+		$q1 =
+		"SELECT * FROM equi4_peliculapp.pelicula
+		WHERE PeliculaID=$this->id";
+
+		$pel = $this->con->consulta($q1);
+
+		// Cuenta si se obtuvo el registro y reemplaza las FKs
+		if ( count($pel) == 1 ) {
+			$id = $pel[0][2];
+			
+			$q2 =
+			"SELECT Genero FROM equi4_peliculapp.peliculagenero
+			WHERE PeliculaGeneroID=$id";
+
+			$gen = $this->con->consulta($q2)[0][0];
+
+			$pel[0][2] = $gen;
+		}
+
+		return $pel;
+	}
+
 	public function creaPeliculaDB()
 	{
 		$q ="INSERT INTO equi4_peliculapp.pelicula

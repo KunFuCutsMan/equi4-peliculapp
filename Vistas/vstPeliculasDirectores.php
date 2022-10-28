@@ -1,4 +1,5 @@
-<?php if ( count($arrPeliculasDeDirector) >= 1 ): ?>
+<?php if ( isset($_GET['label']) && $_GET['label'] == 5 ): ?>
+	<?php if ( count($arrPeliculasDeDirector) >= 1 ): ?>
 	<h2>Películas del Director:</h2>
 
 	<table>
@@ -18,8 +19,9 @@
 		</tbody>
 	</table>
 
-<?php else: ?>
+	<?php else: ?>
 
 	<div class="msg-bad">El director no tiene alguna película registrada</div>
 
+	<?php endif ?>
 <?php endif ?>
