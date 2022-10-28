@@ -56,6 +56,31 @@ class CDirector extends CConectable
 		return $pelis;
 	}
 
+	public function obtenDirectoresDePelicula($idPeli)
+	{
+		$directs = array();
+
+		// Obtengamos los directores relacionados con la película
+		$q1 =
+		"SELECT * FROM equi4_peliculapp.directorpelicula
+		WHERE `PeliculaID`=$idPeli";
+
+		$res = $this->con->consulta($q1);
+
+		// Y añadimos su información a $directs
+		foreach ($res as $directorID) {
+			$q2 =
+			"SELECT * FROM equi4_peliculapp.director
+			WHERE `DirectorID`=$directorID[0]";
+
+			$direc = $this->con->consulta($q2);
+
+			array_push($directs, $direc[0]);
+		}
+
+		return $directs;
+	}
+
 	public function obtenTodosDirectoresHTML()
 	{
 		$html = "";

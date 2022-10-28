@@ -26,9 +26,32 @@ class CActor extends CConectable
 			VALUES ('$this->Nombre', '$this->ApePrimero',
 			'$this->ApeSegundo', $this->PaisID)";
 
-		print_r2($q);
-
 		return $this->con->ejecuta($q);
+	}
+
+	public function obtenActoresEnPelicula($idPeli)
+	{
+		$acts = array();
+
+		// Busquemos primero los actores relacionados con la pelicula
+		$q1 =
+		"SELECT * FROM equi4_peliculapp.actorpelicula
+		WHERE `PeliculaID`=$idPeli";
+
+		$res = $this->con->consulta($q1);
+
+		// Y añadimos su información a $acts
+		foreach ($res as $actorID) {
+			$q2 =
+			"SELECT * FROM equi4_peliculapp.actor
+			WHERE `ActorID`=$actorID[0]";
+
+			$act = $this->con->consulta($q2);
+
+			array_push($acts, $act[0]);
+		}
+
+		return $acts;
 	}
 
 	public function existeEnDB()
