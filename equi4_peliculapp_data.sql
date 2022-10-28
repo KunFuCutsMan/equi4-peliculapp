@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `equi4_peliculapp` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `equi4_peliculapp`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: equi4_peliculapp
@@ -18,50 +16,14 @@ USE `equi4_peliculapp`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `actor`
---
-
-DROP TABLE IF EXISTS `actor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `actor` (
-  `ActorID` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(60) NOT NULL,
-  `ApePrimero` varchar(60) NOT NULL,
-  `ApeSegundo` varchar(60) DEFAULT NULL,
-  `PaisesID` int(11) NOT NULL,
-  PRIMARY KEY (`ActorID`),
-  KEY `PaisesID_act` (`PaisesID`),
-  CONSTRAINT `PaisesID_act` FOREIGN KEY (`PaisesID`) REFERENCES `paises` (`PaisesID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `actor`
 --
 
 LOCK TABLES `actor` WRITE;
 /*!40000 ALTER TABLE `actor` DISABLE KEYS */;
-INSERT INTO `actor` VALUES (1,'Harrison','Ford',NULL,75),(2,'Karen','Allen',NULL,75),(3,'Paul','Freeman',NULL,18),(4,'Ronald William','Lacey',NULL,18),(5,'John','Rhys','Davies',18),(6,'Denholm Mitchell','Elliott',NULL,18),(7,'Alfred','Molina',NULL,18);
+INSERT INTO `actor` VALUES (1,'Harrison','Ford',NULL,75),(2,'Karen','Allen',NULL,75),(3,'Paul','Freeman',NULL,18),(4,'Ronald William','Lacey',NULL,18),(5,'John','Rhys','Davies',18),(6,'Denholm Mitchell','Elliott',NULL,18),(7,'Alfred','Molina',NULL,18),(10,'Will','Smith','',75),(11,'Nigel John','Neill','',164),(12,'Laura Elizabeth','Dern','',75),(13,'Jeffrey Lynn','Goldblum','',75),(14,'Wayne Elliot','Knight','',75);
 /*!40000 ALTER TABLE `actor` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `actorpelicula`
---
-
-DROP TABLE IF EXISTS `actorpelicula`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `actorpelicula` (
-  `ActorID` int(11) NOT NULL,
-  `PeliculaID` int(11) NOT NULL,
-  PRIMARY KEY (`ActorID`,`PeliculaID`),
-  KEY `PeliculaID_act_pel` (`PeliculaID`),
-  CONSTRAINT `ActorID_act_pel` FOREIGN KEY (`ActorID`) REFERENCES `actor` (`ActorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `PeliculaID_act_pel` FOREIGN KEY (`PeliculaID`) REFERENCES `pelicula` (`PeliculaID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `actorpelicula`
@@ -69,27 +31,9 @@ CREATE TABLE `actorpelicula` (
 
 LOCK TABLES `actorpelicula` WRITE;
 /*!40000 ALTER TABLE `actorpelicula` DISABLE KEYS */;
+INSERT INTO `actorpelicula` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(11,2),(12,2),(13,2),(14,2);
 /*!40000 ALTER TABLE `actorpelicula` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `director`
---
-
-DROP TABLE IF EXISTS `director`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `director` (
-  `DirectorID` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(60) NOT NULL,
-  `ApePrimero` varchar(60) NOT NULL,
-  `ApeSegundo` varchar(60) DEFAULT NULL,
-  `PaisesID` int(11) NOT NULL,
-  PRIMARY KEY (`DirectorID`),
-  KEY `PaisesID` (`PaisesID`),
-  CONSTRAINT `PaisesID` FOREIGN KEY (`PaisesID`) REFERENCES `paises` (`PaisesID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `director`
@@ -102,45 +46,14 @@ INSERT INTO `director` VALUES (1,'Guillermo','del Toro','Gómez',146),(2,'Stephe
 UNLOCK TABLES;
 
 --
--- Table structure for table `directorpelicula`
---
-
-DROP TABLE IF EXISTS `directorpelicula`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `directorpelicula` (
-  `DirectorID` int(11) NOT NULL,
-  `PeliculaID` int(11) NOT NULL,
-  PRIMARY KEY (`DirectorID`,`PeliculaID`),
-  KEY `PeliculaID_dir_pel` (`PeliculaID`),
-  CONSTRAINT `DirectorID_dir_pel` FOREIGN KEY (`DirectorID`) REFERENCES `director` (`DirectorID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `PeliculaID_dir_pel` FOREIGN KEY (`PeliculaID`) REFERENCES `pelicula` (`PeliculaID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `directorpelicula`
 --
 
 LOCK TABLES `directorpelicula` WRITE;
 /*!40000 ALTER TABLE `directorpelicula` DISABLE KEYS */;
+INSERT INTO `directorpelicula` VALUES (2,1),(2,2);
 /*!40000 ALTER TABLE `directorpelicula` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `paises`
---
-
-DROP TABLE IF EXISTS `paises`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `paises` (
-  `PaisesID` int(11) NOT NULL AUTO_INCREMENT,
-  `ISO` char(2) DEFAULT NULL,
-  `Nombre` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`PaisesID`)
-) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `paises`
@@ -153,44 +66,14 @@ INSERT INTO `paises` VALUES (1,'AF','Afganistán'),(2,'AX','Islas Gland'),(3,'AL
 UNLOCK TABLES;
 
 --
--- Table structure for table `pelicula`
---
-
-DROP TABLE IF EXISTS `pelicula`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pelicula` (
-  `PeliculaID` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(200) NOT NULL,
-  `PeliculaGeneroID` int(11) NOT NULL,
-  PRIMARY KEY (`PeliculaID`),
-  KEY `PeliculaGeneroID` (`PeliculaGeneroID`),
-  CONSTRAINT `PeliculaGeneroID` FOREIGN KEY (`PeliculaGeneroID`) REFERENCES `peliculagenero` (`PeliculaGeneroID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `pelicula`
 --
 
 LOCK TABLES `pelicula` WRITE;
 /*!40000 ALTER TABLE `pelicula` DISABLE KEYS */;
+INSERT INTO `pelicula` VALUES (1,'Indiana Jones en bÃºsqueda del Arca Perdida',1),(2,'Parque JurÃ¡sico',10);
 /*!40000 ALTER TABLE `pelicula` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `peliculagenero`
---
-
-DROP TABLE IF EXISTS `peliculagenero`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `peliculagenero` (
-  `PeliculaGeneroID` int(11) NOT NULL AUTO_INCREMENT,
-  `Genero` varchar(60) NOT NULL,
-  PRIMARY KEY (`PeliculaGeneroID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `peliculagenero`
@@ -198,6 +81,7 @@ CREATE TABLE `peliculagenero` (
 
 LOCK TABLES `peliculagenero` WRITE;
 /*!40000 ALTER TABLE `peliculagenero` DISABLE KEYS */;
+INSERT INTO `peliculagenero` VALUES (1,'AVENTURA'),(7,'ROMANCE'),(8,'DRAMA'),(9,'COMEDIA'),(10,'CIENCIA FICCIÃ“N');
 /*!40000 ALTER TABLE `peliculagenero` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -210,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-22 20:05:53
+-- Dump completed on 2022-10-28 16:56:04
