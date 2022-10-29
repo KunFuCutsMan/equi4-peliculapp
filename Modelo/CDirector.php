@@ -17,6 +17,18 @@ class CDirector extends CConectable
 		parent::__construct($id);
 		$this->setNombre($nom);
 		$this->setApePrimero($ape1);
+		$this->setPaisID($pai);
+	}
+
+	public function creaDirectorDB()
+	{
+		$q =
+		"INSERT INTO equi4_peliculapp.director
+		(`Nombre`, `ApePrimero`, `ApeSegundo`, `PaisesID`)
+		VALUES ('$this->Nombre','$this->ApePrimero',
+			'$this->ApeSegundo', $this->PaisID)";
+
+		return $this->con->ejecuta($q);
 	}
 
 	public function obtenPeliculasEnDB()
@@ -79,6 +91,29 @@ class CDirector extends CConectable
 		}
 
 		return $directs;
+	}
+
+	public function existeEnDB()
+	{
+		$q =
+		"SELECT CASE WHEN EXISTS(
+			SELECT * FROM equi4_peliculapp.director
+			WHERE UPPER(Nombre)=UPPER('$this->Nombre')
+			AND UPPER(ApePrimero)=UPPER('$this->ApePrimero')
+			AND UPPER(ApeSegundo)=UPPER('$this->ApeSegundo')
+			AND PaisesID=$this->PaisID
+			)
+			THEN TRUE ELSE FALSE
+		END";
+
+		// El resultado se obtiene de un arreglo bidimensional
+		// De un solo espacio, [0][0]
+		$bool = $this->con->consulta($q);
+
+		if ( $bool[0][0] == true ) {
+			return true;
+		}
+		else return false;
 	}
 
 	public function obtenTodosDirectoresHTML()

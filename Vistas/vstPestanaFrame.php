@@ -43,6 +43,7 @@
 
 	<div class="pestana-contenido">
 		<div id="pes1-contenido" class="pestana-box">
+			<?php require 'Control/ctrlFormDirector.php'; ?>
 			<?php require 'Vistas/FormsEntidades/vstFormDirector.php'; ?>
 		</div>
 

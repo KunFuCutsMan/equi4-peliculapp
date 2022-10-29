@@ -19,9 +19,9 @@ if ( isset($_GET['label']) && $_GET['label'] == 2 ) {
 		$c++;
 	}
 
-	if (isset($_POST['txtActortorApe2do']) &&
-		!empty($_POST['txtActortorApe2do'])) {
-		$ap2 = $_POST['txtActortorApe2do'];
+	if (isset($_POST['txtActorApe2do']) &&
+		!empty($_POST['txtActorApe2do'])) {
+		$ap2 = $_POST['txtActorApe2do'];
 	}
 
 	if (isset($_POST['slcActorPais']) && $_POST['slcActorPais'] > 0) {
